@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestRegressor
 import math
 
 # Import data and drop smiles column
-data = pd.read_csv("train.csv")
+data = pd.read_csv("data/train.csv")
 data = data.drop(['smiles'], axis=1)
 
 # Calculates the RMSE given a vector of predictions and a vector of observations
