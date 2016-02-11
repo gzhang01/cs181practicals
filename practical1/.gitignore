@@ -2,3 +2,5 @@ train.csv
 test.csv
 new_features.csv
 new_features_commented.csv
+new_features_train.csv
+new_features_test.csv
