@@ -6,13 +6,36 @@ Mean: 0.289114269143
 Variance: 1.35628580605e-05
 Std Dev: 0.0036827785788
 
+n = 3
+N = all
+Mean: 0.272615846057
+Variance: 2.53476355235e-07
+Std Dev: 0.00050346435349
+
+n = 4
+Mean: 0.272566924438
+Variance: 3.69529491593e-07
+Std Dev: 0.00060788937447
+
+n = 5
+Mean: 0.272519375364
+Variance: 2.11461382961e-07
+Std Dev: 0.000459849304621
+
 Given features (LR)
 
 n = 2
-N = 1000000
+N = all
 Mean: 0.299078839663
 Variance: 9.99729848997e-09
 Std Dev: 9.99864915375e-05
+
+
+n = 3
+N = all
+Mean: 0.298937228063
+Variance: 2.61881976154e-07
+Std Dev: 0.000511744053365
 
 n = 5
 N = 1000
@@ -27,7 +50,13 @@ Variance: 9.26466719704e-05
 Std Dev: 0.00962531412321
 
 
-New features (atoms, bonds, and valence electrons)
+New features (atoms, bonds, and valence electrons) w/ RF
+
+n = 2
+N = all
+Mean: 0.190645387223
+Variance: 5.25254705715e-08
+Std Dev: 0.000229184359352
 
 n = 5
 N = 10000
@@ -35,7 +64,7 @@ Mean: 0.237373089645
 Variance: 3.03657648654e-06
 Std Dev: 0.00174257754104
 
-New features (atoms and bonds)
+New features (atoms and bonds) w/ LR
 
 n = 5
 N = 10000
