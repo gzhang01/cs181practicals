@@ -27,6 +27,14 @@ Variance: 9.26466719704e-05
 Std Dev: 0.00962531412321
 
 
+New features (atoms, bonds, and valence electrons)
+
+n = 5
+N = 10000
+Mean: 0.237373089645
+Variance: 3.03657648654e-06
+Std Dev: 0.00174257754104
+
 New features (atoms and bonds)
 
 n = 5
