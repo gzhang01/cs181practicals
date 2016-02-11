@@ -1,6 +1,38 @@
 Linear Regression:
 
+Given features
+
 n = 2
+N = 1000000
 Mean: 0.299078839663
 Variance: 9.99729848997e-09
 Std Dev: 9.99864915375e-05
+
+n = 5
+N = 1000
+Mean: 0.354615421221
+Variance: 0.00120283934348
+Std Dev: 0.0346819743307
+
+n = 5
+N = 10000
+Mean: 0.304407942451
+Variance: 9.26466719704e-05
+Std Dev: 0.00962531412321
+
+
+
+
+New features
+
+n = 5
+N = 1000
+Mean: 0.320388478168
+Variance: 3.94479808225e-05
+Std Dev: 0.00628076275802
+
+n = 5
+N = 10000
+Mean: 0.320854916664
+Variance: 3.74019839816e-06
+Std Dev: 0.00193395925452
