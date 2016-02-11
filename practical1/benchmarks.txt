@@ -1,0 +1,6 @@
+Linear Regression:
+
+n = 2
+Mean: 0.299078839663
+Variance: 9.99729848997e-09
+Std Dev: 9.99864915375e-05
