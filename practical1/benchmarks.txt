@@ -1,6 +1,12 @@
-Linear Regression:
+Given features (RF)
 
-Given features
+n = 5
+N = 10000
+Mean: 0.289114269143
+Variance: 1.35628580605e-05
+Std Dev: 0.0036827785788
+
+Given features (LR)
 
 n = 2
 N = 1000000
@@ -21,9 +27,32 @@ Variance: 9.26466719704e-05
 Std Dev: 0.00962531412321
 
 
+New features (atoms and bonds)
+
+n = 5
+N = 10000
+Mean: 0.261732526364
+Variance: 2.56991568661e-06
+Std Dev: 0.00160309565735
 
 
-New features
+New features (atoms)
+
+n = 5
+N = 1000
+Mean: 0.315102606226
+Variance: 1.4089711951e-05
+Std Dev: 0.00375362650659
+
+n = 5
+N = 10000
+Mean: 0.322925760745
+Variance: 1.3979177946e-05
+Std Dev: 0.00373887388742
+
+
+
+New features (family, type)
 
 n = 5
 N = 1000
