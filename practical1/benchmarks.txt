@@ -37,6 +37,12 @@ Mean: 0.298937228063
 Variance: 2.61881976154e-07
 Std Dev: 0.000511744053365
 
+n = 4
+N = all
+Mean: 0.298935114941
+Variance: 2.67799241344e-07
+Std Dev: 0.000517493228308
+
 n = 5
 N = 1000
 Mean: 0.354615421221
@@ -74,7 +80,13 @@ Mean: 0.237373089645
 Variance: 3.03657648654e-06
 Std Dev: 0.00174257754104
 
-New features (atoms and bonds) w/ LR
+New features (atoms and bonds, and valence electrons) w/ LR
+
+n = 3
+N = all
+Mean: 0.261032528072
+Variance: 1.82603356257e-08
+Std Dev: 0.000135130809313
 
 n = 5
 N = 10000
