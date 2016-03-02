@@ -39,8 +39,6 @@ def create_data_matrix(start_index, end_index, direc="train"):
         if i >= end_index:
             break
 
-        print datafile
-
         # extract id and true class (if available) from filename
         id_str, clazz = datafile.split('.')[:2]
         ids.append(id_str)
@@ -66,7 +64,7 @@ def create_data_matrix(start_index, end_index, direc="train"):
     return X, np.array(classes), ids
 
 def call_feats(tree):
-    good_calls = ['sleep', 'dump_line']
+    good_calls = ['dump_line', 'download_file', 'open_file', 'connect_socket', 'impersonate_user']
 
     call_counter = {}
     for el in tree.iter():
@@ -76,14 +74,18 @@ def call_feats(tree):
         else:
             call_counter[call] += 1
 
-    call_feat_array = np.zeros(len(good_calls))
-    for i in range(len(good_calls)):
-        call = good_calls[i]
-        call_feat_array[i] = 0
-        if call in call_counter:
-            call_feat_array[i] = call_counter[call]
+    # print call_counter
 
-    return call_feat_array
+    # call_feat_array = np.zeros(len(good_calls))
+    # for i in range(len(good_calls)):
+    #     call = good_calls[i]
+    #     call_feat_array[i] = 0
+    #     if call in call_counter:
+    #         call_feat_array[i] = call_counter[call]
+
+    # return call_feat_array
+
+    return sum(call_counter.values())
 
 ## Feature extraction
 def main():
@@ -92,10 +94,18 @@ def main():
 
     print 'Data matrix (training set):'
     print X_train
+    print X_train.shape[0]
     print 'Classes (training set):'
     print t_train
 
     # From here, you can train models (eg by importing sklearn and inputting X_train, t_train).
+
+    # X = X_train
+    # Y = t_train
+
+    # nb1 = GaussianGenerativeModel(isSharedCovariance=False)
+    # nb1.fit(X,Y)
+    # nb1.visualize("generative_result_separate_covariances.png")
 
 if __name__ == "__main__":
     main()

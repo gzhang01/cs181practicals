@@ -1,3 +1,5 @@
 sample_predictions.csv
-malware_test
-malware_train
+test
+train
+malware_test.gz
+malware_train.gz
