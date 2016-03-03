@@ -65,7 +65,7 @@ class GaussianGenerativeModel:
                         cov=covariances)
             else:
                 class_probs[c] = multivariate_normal.pdf(x, mean=means[c],
-                        cov=covariances[c])
+                        cov=covariances[c], allow_singular=True)
         return np.log(class_probs)
 
     def __getClassCounts(self, Y, nclasses):
