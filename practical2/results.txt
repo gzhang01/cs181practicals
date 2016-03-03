@@ -1,0 +1,9 @@
+Count of sys calls
+Mean: 2.77383599922
+Variance: 0.0041676657924
+Std Dev: 0.0645574611679
+
+good_calls = ['dump_line', 'download_file', 'open_file', 'connect_socket', 'impersonate_user']
+Mean: 2.74776928037
+Variance: 0.00358160231764
+Std Dev: 0.0598464896016

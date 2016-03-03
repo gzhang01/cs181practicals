@@ -19,8 +19,8 @@ def cross_validation(n):
     # Training data
     TRAIN_DIR = "train"
     # adjust this to change size
-    X_train, Y_train, train_ids = tony_test.create_data_matrix(0, 50, TRAIN_DIR)
-    
+    X_train, Y_train, train_ids = tony_test.create_data_matrix(0, 100, TRAIN_DIR)
+
     # Determines size of blocks and indices to start
     dataSize = X_train.shape[0]
     blockSize = dataSize / n
