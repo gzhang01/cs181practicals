@@ -4,3 +4,4 @@ train
 malware_test.gz
 malware_train.gz
 *.pyc
+.ipynb_checkpoints
