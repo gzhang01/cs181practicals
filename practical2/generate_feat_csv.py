@@ -1,9 +1,3 @@
-# Example Feature Extraction from XML Files
-# We count the number of specific system calls made by the programs, and use
-# these as our features.
-
-# This code requires that the unzipped training set is in a folder called "train". 
-
 import os
 from collections import Counter
 try:
@@ -18,6 +12,9 @@ import util
 TRAIN_DIR = "train"
 
 call_set = set([])
+
+# CHANGE IF NEED DIFFERENT FEATURES
+good_calls = ['dump_line', 'download_file', 'open_file', 'connect_socket', 'impersonate_user']
 
 def add_to_set(tree):
     for el in tree.iter():
@@ -64,7 +61,7 @@ def create_data_matrix(start_index, end_index, direc="train"):
     return X, np.array(classes), ids
 
 def call_feats(tree):
-    good_calls = ['dump_line', 'download_file', 'open_file', 'connect_socket', 'impersonate_user']
+    
 
     call_counter = {}
     for el in tree.iter():
@@ -74,35 +71,34 @@ def call_feats(tree):
         else:
             call_counter[call] += 1
 
-    # print call_counter
+    call_feat_array = np.zeros(len(good_calls))
+    for i in range(len(good_calls)):
+        call = good_calls[i]
+        call_feat_array[i] = 0
+        if call in call_counter:
+            call_feat_array[i] = call_counter[call]
 
-    # call_feat_array = np.zeros(len(good_calls))
-    # for i in range(len(good_calls)):
-    #     call = good_calls[i]
-    #     call_feat_array[i] = 0
-    #     if call in call_counter:
-    #         call_feat_array[i] = call_counter[call]
+    return call_feat_array
 
-    # return call_feat_array
-
-    return sum(call_counter.values())
-
-def write_to_file(filename, predictions):
+def write_feats_to_file(filename, ids, feat_counts, classes):
     with open(filename, "w") as f:
-        f.write("Id,Prediction\n")
-        for i,p in enumerate(predictions):
-            f.write(str(i+1) + "," + str(p) + "\n")
+        csfeats = ",".join(good_calls)
+        f.write("id," + csfeats + ",classnum\n")
+        for i in range(len(ids)):
+            csfeatcounts = ",".join(map(str, feat_counts[i]))
+            f.write(str(ids[i]) + "," + str(csfeatcounts) + "," + str(classes[i]) + "\n")
 
 ## Feature extraction
 def main():
-    X_train, t_train, train_ids = create_data_matrix(0, 9999999999, TRAIN_DIR)
-    X_valid, t_valid, valid_ids = create_data_matrix(10, 15, TRAIN_DIR)
+    X_train, t_train, train_ids = create_data_matrix(0, 3086, TRAIN_DIR)
 
     print 'Data matrix (training set):'
-    print X_train
+    # print X_train
     print X_train.shape[0]
     print 'Classes (training set):'
     print t_train
+
+    write_feats_to_file("data/features.csv", train_ids, X_train, t_train)
 
     # From here, you can train models (eg by importing sklearn and inputting X_train, t_train).
 
