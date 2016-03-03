@@ -18,3 +18,7 @@ def plot_feature(csv_path, colname):
     df = pd.DataFrame.from_csv(csv_path)
     return df.boxplot(column=colname, by="classnum")
 
+# In[ ]:
+
+
+
