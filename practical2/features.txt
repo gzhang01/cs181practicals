@@ -1,0 +1,13 @@
+USING:
+'download_file', 'open_file', 'impersonate_user', 'open_process', 'kill_process', 'destroy_window', 'query_value', 'SECURITY_ANONYMOUS', 'create_open_file', 'find_file', 'open_key', 'delete_file', 'WIN.INI', 'hash_error', 'open_scmanager', 'NtTerminateProcess', 'recv_socket', 'enum_keys', 'set_windows_hook', 'com_create_instance', 'create_thread', 'find_window', 
+
+
+'dump_line', 'connect_socket', 'load_dll', 'Windows Desktop Search', 'open_mutex', 'open_url', 'trimmed_bytes', 'check_for_debugger', 'FILE_SHARE_DELETE', 'terminationreason="Timeout"'
+
+UNTESTED:
+
+TO TEST:
+
+
+DELETED:
+'vm_protect', 'set_file_time', 'sleep','create_thread_remote', 'desktop.ini', 'FILE_WRITE_DATA', 'FILE_READ_DATA',
