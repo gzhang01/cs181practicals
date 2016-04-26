@@ -2,3 +2,4 @@ practical1/test
 practical1/train
 *.DS_Store
 *.ipynb_checkpoints
+*.pyc
