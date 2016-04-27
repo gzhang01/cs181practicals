@@ -23,6 +23,7 @@ class Learner(object):
             for _ in xrange(600 / self.box)] 
             for _ in xrange(400 / self.box)]
         self.tick = 0
+        self.epsilon = 1
 
     def reset(self):
         self.last_state  = None
@@ -42,7 +43,6 @@ class Learner(object):
         print state
         print self.last_reward
         print self.tick
-        print ""
 
         curr = self.Q[state["monkey"]["bot"] / self.box][state["tree"]["dist"] / self.box][(state["monkey"]["bot"] - state["tree"]["bot"] + 400) / self.marginBox][self.gravity]
         # If previous action exists, update Q on it
@@ -57,11 +57,15 @@ class Learner(object):
         # You'll need to select and action and return it.
         # Return 0 to swing and 1 to jump.
 
-        new_action = self.findBestAction(curr)
+        new_action = self.findNextAction(curr)
         new_state  = state
 
         self.last_action = new_action
         self.last_state  = new_state
+
+        print self.epsilon
+        print new_action
+        print ""
 
         return self.last_action
 
@@ -72,10 +76,21 @@ class Learner(object):
         if reward != 0:
             self.tick += 1
             # self.updateAlpha()
+            self.updateEpsilon()
 
     def findBestAction(self, curr):
-        best = max(curr)
-        return curr.index(best)
+        return curr.index(max(curr))
+
+    def findNextAction(self, curr):
+        if npr.rand() < self.epsilon:
+            return npr.rand() < 0.5
+        return self.findBestAction(curr)
+
+    def updateEpsilon(self):
+        if self.epsilon > 0.01:
+            self.epsilon = 1.0 / (self.tick + 1)
+        else:
+            self.epsilon = 0
 
     def updateAlpha(self):
         self.alpha = 0.5 - 1.0 / 1000 * self.tick
