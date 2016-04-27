@@ -37,7 +37,7 @@ class Learner(object):
 
         # You might do some learning here based on the current state and the last state.
 
-        print state
+        # print state
         print self.last_reward
         print ""
 
