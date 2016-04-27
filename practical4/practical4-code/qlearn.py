@@ -14,7 +14,7 @@ class Learner(object):
         self.findGravity = 1
         self.alpha = 0.5
         self.gamma = 0.5
-        self.box = 75
+        self.box = 100
         self.marginBox = 25
         # Monkey bottom -> Tree dist -> Monkey bottom - tree bottom -> Gravity -> Action
         self.Q = [[[[[0 for _ in xrange(2)]
@@ -49,9 +49,10 @@ class Learner(object):
         if self.last_state != None:
             prev = self.Q[self.last_state["monkey"]["bot"] / self.box][self.last_state["tree"]["dist"] / self.box][(self.last_state["monkey"]["bot"] - self.last_state["tree"]["bot"] + 400) / self.marginBox][self.gravity]
             prev[self.last_action] = prev[self.last_action] + self.alpha * (self.last_reward + self.gamma * curr[self.findBestAction(curr)] - prev[self.last_action])
-        elif self.findGravity == 1:
-            self.gravity = 0 if (state["monkey"]["vel"] == -1) else 1
-            self.findGravity = 0
+            # If we still need to determine gravity, do so
+            if self.findGravity == 1 and self.last_action != 1:
+                self.gravity = 0 if (state["monkey"]["vel"] - self.last_state["monkey"]["vel"] == -1) else 1
+                self.findGravity = 0
 
         # You'll need to select and action and return it.
         # Return 0 to swing and 1 to jump.
