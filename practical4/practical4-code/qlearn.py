@@ -10,23 +10,25 @@ class Learner(object):
         self.last_state  = None
         self.last_action = None
         self.last_reward = None
-        self.gravity = 0
+        self.gravity = 1
         self.findGravity = 1
         self.alpha = 0.5
         self.gamma = 0.5
-        self.box = 56
+        self.box = 75
+        self.marginBox = 25
         # Monkey bottom -> Tree dist -> Monkey bottom - tree bottom -> Gravity -> Action
         self.Q = [[[[[0 for _ in xrange(2)]
             for _ in xrange(2)]
-            for _ in xrange(800 / self.box)] 
+            for _ in xrange(800 / self.marginBox)] 
             for _ in xrange(600 / self.box)] 
             for _ in xrange(400 / self.box)]
+        self.tick = 0
 
     def reset(self):
         self.last_state  = None
         self.last_action = None
         self.last_reward = None
-        self.gravity = 0
+        self.gravity = 1
         self.findGravity = 1
 
     def action_callback(self, state):
@@ -39,12 +41,13 @@ class Learner(object):
 
         print state
         print self.last_reward
+        print self.tick
         print ""
 
-        curr = self.Q[state["monkey"]["bot"] / self.box][state["tree"]["dist"] / self.box][(state["monkey"]["bot"] - state["tree"]["bot"] + 400) / self.box][self.gravity]
+        curr = self.Q[state["monkey"]["bot"] / self.box][state["tree"]["dist"] / self.box][(state["monkey"]["bot"] - state["tree"]["bot"] + 400) / self.marginBox][self.gravity]
         # If previous action exists, update Q on it
         if self.last_state != None:
-            prev = self.Q[self.last_state["monkey"]["bot"] / self.box][self.last_state["tree"]["dist"] / self.box][(self.last_state["monkey"]["bot"] - self.last_state["tree"]["bot"] + 400) / self.box][self.gravity]
+            prev = self.Q[self.last_state["monkey"]["bot"] / self.box][self.last_state["tree"]["dist"] / self.box][(self.last_state["monkey"]["bot"] - self.last_state["tree"]["bot"] + 400) / self.marginBox][self.gravity]
             prev[self.last_action] = prev[self.last_action] + self.alpha * (self.last_reward + self.gamma * curr[self.findBestAction(curr)] - prev[self.last_action])
         elif self.findGravity == 1:
             self.gravity = 0 if (state["monkey"]["vel"] == -1) else 1
@@ -65,9 +68,18 @@ class Learner(object):
         '''This gets called so you can see what reward you get.'''
 
         self.last_reward = reward
+        if reward != 0:
+            self.tick += 1
+            # self.updateAlpha()
 
     def findBestAction(self, curr):
-        return curr.index(max(curr))
+        best = max(curr)
+        return curr.index(best)
+
+    def updateAlpha(self):
+        self.alpha = 0.5 - 1.0 / 1000 * self.tick
+        if self.alpha < 0.1:
+            self.alpha = 0.1
 
 
 
@@ -106,7 +118,7 @@ if __name__ == '__main__':
     hist = []
 
     # Run games. 
-    run_games(agent, hist, 100, 10)
+    run_games(agent, hist, 100, 5)
 
     # Save history. 
     print hist
