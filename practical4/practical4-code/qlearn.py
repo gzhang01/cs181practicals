@@ -14,13 +14,13 @@ class Learner(object):
         self.findGravity = 1
         self.alpha = 0.5
         self.gamma = 0.5
-        self.box = 100
+        self.box = 200
         self.marginBox = 25
         # Monkey bottom -> Tree dist -> Monkey bottom - tree bottom -> Gravity -> Action
         self.Q = [[[[[0 for _ in xrange(2)]
             for _ in xrange(2)]
-            for _ in xrange(800 / self.marginBox)] 
-            for _ in xrange(600 / self.box)] 
+            for _ in xrange(800 / self.marginBox)]
+            for _ in xrange(600 / self.box)]
             for _ in xrange(400 / self.box)]
         self.tick = 0
         self.epsilon = 1
