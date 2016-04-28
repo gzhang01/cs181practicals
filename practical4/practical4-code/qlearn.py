@@ -38,8 +38,8 @@ class Learner(object):
         # You might do some learning here based on the current state and the last state.
 
         # print state
-        print self.last_reward
-        print ""
+        # print self.last_reward
+        # print ""
 
         curr = self.Q[state["monkey"]["bot"] / self.box][state["tree"]["dist"] / self.box][(state["monkey"]["bot"] - state["tree"]["bot"] + 400) / self.box][self.gravity]
         # If previous action exists, update Q on it
