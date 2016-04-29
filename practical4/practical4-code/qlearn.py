@@ -40,9 +40,10 @@ class Learner(object):
 
         # You might do some learning here based on the current state and the last state.
 
-        print state
-        print self.last_reward
-        print self.tick
+        # print state
+        # print self.last_reward
+        # print self.tick
+        # print self.Q[0]
 
         curr = self.Q[state["monkey"]["bot"] / self.box][state["tree"]["dist"] / self.box][(state["monkey"]["bot"] - state["tree"]["bot"] + 400) / self.marginBox][self.gravity]
         # If previous action exists, update Q on it
@@ -63,9 +64,9 @@ class Learner(object):
         self.last_action = new_action
         self.last_state  = new_state
 
-        print self.epsilon
-        print new_action
-        print ""
+        # print self.epsilon
+        # print new_action
+        # print ""
 
         return self.last_action
 
@@ -82,6 +83,7 @@ class Learner(object):
         return curr.index(max(curr))
 
     def findNextAction(self, curr):
+        print curr
         if npr.rand() < self.epsilon:
             return npr.rand() < 0.5
         return self.findBestAction(curr)
