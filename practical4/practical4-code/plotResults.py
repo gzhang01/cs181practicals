@@ -23,20 +23,20 @@ arr = [
 	]
 
 # Eliminate outliers
-for i in xrange(len(arr)):
-	c = 0.9
-	m = 4
-	s = sorted(arr[i])
-	print s
-	# print s[(int) (len(arr[i]) * c)]
-	# print s[(int) (len(arr[i]) * (1 - c))]
-	iqr = s[(int) (len(arr[i]) * c)] - s[(int) (len(arr[i]) * (1 - c))]
-	upper = s[(int) (len(arr[i]) * c)] + m * iqr
-	lower = s[(int) (len(arr[i]) * (1 - c))] - m * iqr
-	print upper, lower
-	for j in xrange(len(arr[i]) - 1, -1, -1):
-		if arr[i][j] > upper or arr[i][j] < lower:
-			arr[i].pop(j)
+# for i in xrange(len(arr)):
+# 	c = 0.9
+# 	m = 4
+# 	s = sorted(arr[i])
+# 	print s
+# 	# print s[(int) (len(arr[i]) * c)]
+# 	# print s[(int) (len(arr[i]) * (1 - c))]
+# 	iqr = s[(int) (len(arr[i]) * c)] - s[(int) (len(arr[i]) * (1 - c))]
+# 	upper = s[(int) (len(arr[i]) * c)] + m * iqr
+# 	lower = s[(int) (len(arr[i]) * (1 - c))] - m * iqr
+# 	print upper, lower
+# 	for j in xrange(len(arr[i]) - 1, -1, -1):
+# 		if arr[i][j] > upper or arr[i][j] < lower:
+# 			arr[i].pop(j)
 
 # Format data
 x = []
