@@ -1,0 +1,1 @@
+To run Q-learning algorithm, type "python qlearn.py" into terminal. Program will automatically run most recent version of our algorithm with 100 epochs. 
