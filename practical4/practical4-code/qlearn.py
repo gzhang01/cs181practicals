@@ -1,6 +1,7 @@
 # Imports.
 import numpy as np
 import numpy.random as npr
+import math
 
 from SwingyMonkey import SwingyMonkey
 
@@ -12,18 +13,20 @@ class Learner(object):
         self.last_reward = None
         self.gravity = 1
         self.findGravity = 1
-        self.alpha = 0.5
+        self.alphaStart = 0.2
+        self.alpha = self.alphaStart
         self.gamma = 0.5
-        self.box = 200
+        self.box = 150
         self.marginBox = 25
         # Monkey bottom -> Tree dist -> Monkey bottom - tree bottom -> Gravity -> Action
         self.Q = [[[[[0 for _ in xrange(2)]
             for _ in xrange(2)]
             for _ in xrange(800 / self.marginBox)]
             for _ in xrange(600 / self.box)]
-            for _ in xrange(400 / self.box)]
+            for _ in xrange(450 / self.box)]
         self.tick = 0
-        self.epsilon = 1
+        self.epsilonStart = 1
+        self.epsilon = self.epsilonStart
 
     def reset(self):
         self.last_state  = None
@@ -75,7 +78,7 @@ class Learner(object):
         self.last_reward = reward
         if reward != 0:
             self.tick += 1
-            # self.updateAlpha()
+            self.updateAlpha()
             self.updateEpsilon()
 
     def findBestAction(self, curr):
@@ -88,14 +91,12 @@ class Learner(object):
 
     def updateEpsilon(self):
         if self.epsilon > 0.01:
-            self.epsilon = 1.0 / (self.tick + 1)
+            self.epsilon = self.epsilonStart / (self.tick + 1)
         else:
             self.epsilon = 0
 
     def updateAlpha(self):
-        self.alpha = 0.5 - 1.0 / 1000 * self.tick
-        if self.alpha < 0.1:
-            self.alpha = 0.1
+        self.alpha = self.alphaStart / ((int) (math.floor(self.tick / 25)) + 1)
 
 
 
@@ -114,7 +115,7 @@ def run_games(learner, hist, iters = 100, t_len = 100):
 
         # Loop until you hit something.
         while swing.game_loop():
-            pass
+            print hist
         
         # Save score history.
         hist.append(swing.score)
